@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListExamenResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListExamenResultatEmpty}" rendered="#{examenResultatController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{examenResultatController.items.rowCount > 0}">
+                    <h:outputText value="#{examenResultatController.pagination.pageFirstItem + 1}..#{examenResultatController.pagination.pageLastItem + 1}/#{examenResultatController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{examenResultatController.previous}" value="#{bundle.Previous} #{examenResultatController.pagination.pageSize}" rendered="#{examenResultatController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{examenResultatController.next}" value="#{bundle.Next} #{examenResultatController.pagination.pageSize}" rendered="#{examenResultatController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{examenResultatController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamenResultatTitle_classe}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.classe}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamenResultatTitle_resCatCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resCatCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamenResultatTitle_etudiant}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etudiant}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListExamenResultatTitle_examen}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.examen}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{examenResultatController.prepareView}" value="#{bundle.ListExamenResultatViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{examenResultatController.prepareEdit}" value="#{bundle.ListExamenResultatEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{examenResultatController.destroy}" value="#{bundle.ListExamenResultatDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{examenResultatController.prepareCreate}" value="#{bundle.ListExamenResultatCreateLink}"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.ListExamenResultatIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

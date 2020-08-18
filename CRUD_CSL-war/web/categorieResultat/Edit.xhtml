@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCategorieResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCategorieResultatLabel_resCatCode}" for="resCatCode" />
+                    <h:inputText id="resCatCode" value="#{categorieResultatController.selected.resCatCode}" title="#{bundle.EditCategorieResultatTitle_resCatCode}" required="true" requiredMessage="#{bundle.EditCategorieResultatRequiredMessage_resCatCode}"/>
+                    <h:outputLabel value="#{bundle.EditCategorieResultatLabel_resNoteBasse}" for="resNoteBasse" />
+                    <h:inputText id="resNoteBasse" value="#{categorieResultatController.selected.resNoteBasse}" title="#{bundle.EditCategorieResultatTitle_resNoteBasse}" />
+                    <h:outputLabel value="#{bundle.EditCategorieResultatLabel_resNoteHaute}" for="resNoteHaute" />
+                    <h:inputText id="resNoteHaute" value="#{categorieResultatController.selected.resNoteHaute}" title="#{bundle.EditCategorieResultatTitle_resNoteHaute}" />
+                    <h:outputLabel value="#{bundle.EditCategorieResultatLabel_resPassEchec}" for="resPassEchec" />
+                    <h:inputText id="resPassEchec" value="#{categorieResultatController.selected.resPassEchec}" title="#{bundle.EditCategorieResultatTitle_resPassEchec}" />
+                </h:panelGrid>
+                <h:commandLink action="#{categorieResultatController.update}" value="#{bundle.EditCategorieResultatSaveLink}"/>
+                <br />
+                <br />
+                <h:button outcome="View" value="#{bundle.EditCategorieResultatViewLink}"/>
+                <br />
+                <h:commandLink action="#{categorieResultatController.prepareList}" value="#{bundle.EditCategorieResultatShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.EditCategorieResultatIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

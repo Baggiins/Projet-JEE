@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPresenceEtudiantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPresenceEtudiantLabel_presentOn}" for="presentOn" />
+                    <h:inputText id="presentOn" value="#{presenceEtudiantController.selected.presentOn}" title="#{bundle.EditPresenceEtudiantTitle_presentOn}" />
+                    <h:outputLabel value="#{bundle.EditPresenceEtudiantLabel_calendrier}" for="calendrier" />
+                    <h:selectOneMenu id="calendrier" value="#{presenceEtudiantController.selected.calendrier}" title="#{bundle.EditPresenceEtudiantTitle_calendrier}" required="true" requiredMessage="#{bundle.EditPresenceEtudiantRequiredMessage_calendrier}">
+                        <f:selectItems value="#{calendrierController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditPresenceEtudiantLabel_etudiant}" for="etudiant" />
+                    <h:selectOneMenu id="etudiant" value="#{presenceEtudiantController.selected.etudiant}" title="#{bundle.EditPresenceEtudiantTitle_etudiant}" required="true" requiredMessage="#{bundle.EditPresenceEtudiantRequiredMessage_etudiant}">
+                        <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{presenceEtudiantController.update}" value="#{bundle.EditPresenceEtudiantSaveLink}"/>
+                <br />
+                <br />
+                <h:button outcome="View" value="#{bundle.EditPresenceEtudiantViewLink}"/>
+                <br />
+                <h:commandLink action="#{presenceEtudiantController.prepareList}" value="#{bundle.EditPresenceEtudiantShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.EditPresenceEtudiantIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

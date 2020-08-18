@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewExamenTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewExamenLabel_idExam}"/>
+                    <h:outputText value="#{examenController.selected.idExam}" title="#{bundle.ViewExamenTitle_idExam}"/>
+                    <h:outputText value="#{bundle.ViewExamenLabel_dateExam}"/>
+                    <h:outputText value="#{examenController.selected.dateExam}" title="#{bundle.ViewExamenTitle_dateExam}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewExamenLabel_idSemestre}"/>
+                    <h:outputText value="#{examenController.selected.idSemestre}" title="#{bundle.ViewExamenTitle_idSemestre}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{examenController.destroyAndView}" value="#{bundle.ViewExamenDestroyLink}"/>
+                <br />
+                <br />
+                <h:button outcome="Edit" value="#{bundle.ViewExamenEditLink}"/>
+                <br />
+                <h:commandLink action="#{examenController.prepareCreate}" value="#{bundle.ViewExamenCreateLink}" />
+                <br />
+                <h:commandLink action="#{examenController.prepareList}" value="#{bundle.ViewExamenShowAllLink}"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.ViewExamenIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

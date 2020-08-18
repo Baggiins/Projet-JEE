@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateExamenResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateExamenResultatLabel_classe}" for="classe" />
+                    <h:inputText id="classe" value="#{examenResultatController.selected.classe}" title="#{bundle.CreateExamenResultatTitle_classe}" />
+                    <h:outputLabel value="#{bundle.CreateExamenResultatLabel_resCatCode}" for="resCatCode" />
+                    <h:selectOneMenu id="resCatCode" value="#{examenResultatController.selected.resCatCode}" title="#{bundle.CreateExamenResultatTitle_resCatCode}" required="true" requiredMessage="#{bundle.CreateExamenResultatRequiredMessage_resCatCode}">
+                        <f:selectItems value="#{categorieResultatController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateExamenResultatLabel_etudiant}" for="etudiant" />
+                    <h:selectOneMenu id="etudiant" value="#{examenResultatController.selected.etudiant}" title="#{bundle.CreateExamenResultatTitle_etudiant}" required="true" requiredMessage="#{bundle.CreateExamenResultatRequiredMessage_etudiant}">
+                        <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateExamenResultatLabel_examen}" for="examen" />
+                    <h:selectOneMenu id="examen" value="#{examenResultatController.selected.examen}" title="#{bundle.CreateExamenResultatTitle_examen}" required="true" requiredMessage="#{bundle.CreateExamenResultatRequiredMessage_examen}">
+                        <f:selectItems value="#{examenController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{examenResultatController.create}" value="#{bundle.CreateExamenResultatSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{examenResultatController.prepareList}" value="#{bundle.CreateExamenResultatShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.CreateExamenResultatIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

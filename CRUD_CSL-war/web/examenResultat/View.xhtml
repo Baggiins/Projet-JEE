@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewExamenResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewExamenResultatLabel_classe}"/>
+                    <h:outputText value="#{examenResultatController.selected.classe}" title="#{bundle.ViewExamenResultatTitle_classe}"/>
+                    <h:outputText value="#{bundle.ViewExamenResultatLabel_resCatCode}"/>
+                    <h:outputText value="#{examenResultatController.selected.resCatCode}" title="#{bundle.ViewExamenResultatTitle_resCatCode}"/>
+                    <h:outputText value="#{bundle.ViewExamenResultatLabel_etudiant}"/>
+                    <h:outputText value="#{examenResultatController.selected.etudiant}" title="#{bundle.ViewExamenResultatTitle_etudiant}"/>
+                    <h:outputText value="#{bundle.ViewExamenResultatLabel_examen}"/>
+                    <h:outputText value="#{examenResultatController.selected.examen}" title="#{bundle.ViewExamenResultatTitle_examen}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{examenResultatController.destroyAndView}" value="#{bundle.ViewExamenResultatDestroyLink}"/>
+                <br />
+                <br />
+                <h:button outcome="Edit" value="#{bundle.ViewExamenResultatEditLink}"/>
+                <br />
+                <h:commandLink action="#{examenResultatController.prepareCreate}" value="#{bundle.ViewExamenResultatCreateLink}" />
+                <br />
+                <h:commandLink action="#{examenResultatController.prepareList}" value="#{bundle.ViewExamenResultatShowAllLink}"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.ViewExamenResultatIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

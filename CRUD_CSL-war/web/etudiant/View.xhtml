@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEtudiantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_idEtudiant}"/>
+                    <h:outputText value="#{etudiantController.selected.idEtudiant}" title="#{bundle.ViewEtudiantTitle_idEtudiant}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_prenomEtudiant}"/>
+                    <h:outputText value="#{etudiantController.selected.prenomEtudiant}" title="#{bundle.ViewEtudiantTitle_prenomEtudiant}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_nomEtudiant}"/>
+                    <h:outputText value="#{etudiantController.selected.nomEtudiant}" title="#{bundle.ViewEtudiantTitle_nomEtudiant}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{etudiantController.destroyAndView}" value="#{bundle.ViewEtudiantDestroyLink}"/>
+                <br />
+                <br />
+                <h:button outcome="Edit" value="#{bundle.ViewEtudiantEditLink}"/>
+                <br />
+                <h:commandLink action="#{etudiantController.prepareCreate}" value="#{bundle.ViewEtudiantCreateLink}" />
+                <br />
+                <h:commandLink action="#{etudiantController.prepareList}" value="#{bundle.ViewEtudiantShowAllLink}"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.ViewEtudiantIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

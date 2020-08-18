@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditExamenResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditExamenResultatLabel_classe}" for="classe" />
+                    <h:inputText id="classe" value="#{examenResultatController.selected.classe}" title="#{bundle.EditExamenResultatTitle_classe}" />
+                    <h:outputLabel value="#{bundle.EditExamenResultatLabel_resCatCode}" for="resCatCode" />
+                    <h:selectOneMenu id="resCatCode" value="#{examenResultatController.selected.resCatCode}" title="#{bundle.EditExamenResultatTitle_resCatCode}" required="true" requiredMessage="#{bundle.EditExamenResultatRequiredMessage_resCatCode}">
+                        <f:selectItems value="#{categorieResultatController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditExamenResultatLabel_etudiant}" for="etudiant" />
+                    <h:selectOneMenu id="etudiant" value="#{examenResultatController.selected.etudiant}" title="#{bundle.EditExamenResultatTitle_etudiant}" required="true" requiredMessage="#{bundle.EditExamenResultatRequiredMessage_etudiant}">
+                        <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditExamenResultatLabel_examen}" for="examen" />
+                    <h:selectOneMenu id="examen" value="#{examenResultatController.selected.examen}" title="#{bundle.EditExamenResultatTitle_examen}" required="true" requiredMessage="#{bundle.EditExamenResultatRequiredMessage_examen}">
+                        <f:selectItems value="#{examenController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{examenResultatController.update}" value="#{bundle.EditExamenResultatSaveLink}"/>
+                <br />
+                <br />
+                <h:button outcome="View" value="#{bundle.EditExamenResultatViewLink}"/>
+                <br />
+                <h:commandLink action="#{examenResultatController.prepareList}" value="#{bundle.EditExamenResultatShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.EditExamenResultatIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

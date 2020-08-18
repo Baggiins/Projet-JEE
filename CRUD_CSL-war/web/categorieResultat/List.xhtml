@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCategorieResultatTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCategorieResultatEmpty}" rendered="#{categorieResultatController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{categorieResultatController.items.rowCount > 0}">
+                    <h:outputText value="#{categorieResultatController.pagination.pageFirstItem + 1}..#{categorieResultatController.pagination.pageLastItem + 1}/#{categorieResultatController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{categorieResultatController.previous}" value="#{bundle.Previous} #{categorieResultatController.pagination.pageSize}" rendered="#{categorieResultatController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{categorieResultatController.next}" value="#{bundle.Next} #{categorieResultatController.pagination.pageSize}" rendered="#{categorieResultatController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{categorieResultatController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieResultatTitle_resCatCode}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resCatCode}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieResultatTitle_resNoteBasse}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resNoteBasse}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieResultatTitle_resNoteHaute}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resNoteHaute}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCategorieResultatTitle_resPassEchec}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.resPassEchec}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{categorieResultatController.prepareView}" value="#{bundle.ListCategorieResultatViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categorieResultatController.prepareEdit}" value="#{bundle.ListCategorieResultatEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{categorieResultatController.destroy}" value="#{bundle.ListCategorieResultatDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{categorieResultatController.prepareCreate}" value="#{bundle.ListCategorieResultatCreateLink}"/>
+                <br />
+                <br />
+                <h:button outcome="/index" value="#{bundle.ListCategorieResultatIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
